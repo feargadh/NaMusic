@@ -1,0 +1,52 @@
+.library-modal-content {
+  max-height: 400px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  .library-modal-list-item {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(1.2);
+    }
+    .library-modal-list-item-add {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      color: #007bff;
+      width: 100%;
+
+    }
+    .library-modal-list-item-avatar {
+      height: 36px;
+      width: 36px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      border-radius: 4px;
+    }
+    .library-modal-list-item-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+
+      .library-modal-list-item-name {
+        color: #64bb47;
+        font-weight: 500;
+      }
+      .library-modal-list-item-number {
+        font-size: 12px;
+      }
+    }
+  }
+  .create-library-form {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+}

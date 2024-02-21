@@ -7,7 +7,10 @@ export interface GlobalState {
   currentMusicList: MusicItemRenderData[];
   currenMusicIndex: number;
   playerStatus: "playing" | "pause";
+  
   randomArray: number[];
+  libraryModalOpen: boolean;
+  selectedSongIds: number[]
   setGlobalState: (state: Partial<GlobalState>) => void;
   playerBack: () => void;
   playerForward: () => void;
@@ -21,6 +24,8 @@ const useGlobalStore: UseBoundStore<StoreApi<GlobalState>> = create((set) => ({
   playerStatus: "pause",
   currentMusicList: [],
   randomArray: [],
+  libraryModalOpen: false,
+  selectedSongIds: [],
   currenMusicIndex: -1,
   setGlobalState: (newState: Partial<GlobalState>) => set(newState),
   playerBack: () =>

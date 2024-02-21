@@ -395,7 +395,7 @@ declare interface LyricRenderType {
 }
 
 declare interface SearchSuggestResponse {
-  result: SearchSuggestResult;
+  result?: SearchSuggestResult;
   code: number;
 }
 
@@ -473,7 +473,7 @@ declare interface SearchResult {
   searchQcReminder?: any;
   albums?: SearchAlbum[];
   albumCount?: number;
-  songs?: SearchSong[];
+  songs?: ResourceDataTypeInfo[];
   songCount?: number;
 }
 
@@ -599,4 +599,10 @@ interface SearchSongArtist {
   img1v1Url: string;
   img1v1: number;
   trans?: any;
+}
+
+declare interface CreateLibraryResponse {
+  code: number;
+  playlist: LibraryItem;
+  id: number;
 }

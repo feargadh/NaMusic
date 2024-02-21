@@ -62,11 +62,12 @@ export const getRecentlyMusic = (): HTTPResponse<RecentlyMusicResponse> => {
 /**
  * @description 获取用户歌单
  */
-export const getUserLibrary = (uid: number): HTTPResponse<LibraryResponse> => {
+export const getUserLibrary = (uid: number, offset?: number): HTTPResponse<LibraryResponse> => {
   return http("/user/playlist", {
     method: "GET",
     params: {
       uid,
+      offset
     },
   });
 };
@@ -116,7 +117,7 @@ export const getSearchResult = (
   type?: 1 | 10 | 100,
   offset?: number
 ): HTTPResponse<SeacrhResponse> => {
-  return http("/search", {
+  return http("/cloudsearch", {
     method: "GET",
     params: {
       keywords,
@@ -178,3 +179,16 @@ export const updateSongsInLibrary = (op: "add" | "del", pid: number, tracks: str
     },
   });
 };
+
+/**
+ * @description 新建私人歌单
+ */
+export const createPrivateLibrary = (name: string): HTTPResponse<CreateLibraryResponse> => {
+  return http("/playlist/create", {
+    method: "GET",
+    params: {
+      name,
+      privacy: 10
+    }
+  })
+}

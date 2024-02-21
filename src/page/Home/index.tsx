@@ -6,6 +6,7 @@ import useGlobalStore from "../../store";
 import MusicPlayer from "../../components/MusicPlayer";
 import { Route, Routes } from "react-router-dom";
 import SearchPage from "./Search";
+import UserLibraryModal from "../../components/UserLibraryModal";
 
 const HomePage: React.FC = ({}) => {
   const [profile, setPropfile] = useState<Profile | undefined>(undefined);
@@ -41,6 +42,7 @@ const HomePage: React.FC = ({}) => {
               <Route path="/search" element={<SearchPage />} />
             </Routes>
           </div>
+          <UserLibraryModal />
         </>
       ) : null}
     </div>

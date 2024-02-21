@@ -25,7 +25,8 @@ const SearchPage: React.FC = () => {
   useDeepCompareEffect(() => {
     if (data && data.data.code === 200) {
       const { result } = data.data;
-      const { order } = result;
+      if(result) {
+        const { order } = result;
 
       if (order && order.length > 0) {
         const categories = order.map((title) => ({
@@ -37,11 +38,13 @@ const SearchPage: React.FC = () => {
       } else {
         setOptions([]);
       }
+      }
     }
   }, [data]);
 
   useDeepCompareEffect(() => {
     if (searchResponse && searchResponse.data.code === 200) {
+      // debugger;
       setSearchResult(searchResponse.data.result);
     }
   }, [searchResponse]);

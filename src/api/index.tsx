@@ -1,0 +1,180 @@
+// import { Response } from "@tauri-apps/api/http";
+import http from "../http";
+
+// type TauriHTTPResponse<T = any> = Promise<Response<ApiResponseBaseType<T>>>;
+
+
+/**
+ * @description 获取二维码key值
+ */
+export const getQRCodeKey = (): HTTPResponse<QRKeyResponse> => {
+  return http(`/login/qr/key?timerstamp=${new Date().getTime()}`, {
+    method: "GET",
+  });
+};
+
+/**
+ * @description 根据key值生成二维码
+ */
+export const createQRCode = (key: string): HTTPResponse<QRCodeResponse> => {
+  return http(`/login/qr/create`, {
+    method: "GET",
+    params: {
+      timerstamp: `${new Date().getTime()}`,
+      key,
+      qrimg: true,
+    },
+  });
+};
+
+/**
+ * @description 检查二维码状态
+ */
+export const checkQRCodeStatus = (key: string): HTTPResponse<CheckQRCodeStatusResponse> => {
+  return http(`/login/qr/check`, {
+    method: "GET",
+    params: {
+      key,
+      timerstamp: `${new Date().getTime()}`,
+    },
+  });
+};
+
+/**
+ * @description 获取当前账号信息
+ */
+export const getLoginUserInfo = (): HTTPResponse<LoginUserResponse> => {
+  return http("/user/account", {
+    method: "GET",
+    params: {},
+  });
+};
+
+/**
+ * @description 获取最近播放音乐
+ */
+export const getRecentlyMusic = (): HTTPResponse<RecentlyMusicResponse> => {
+  return http("/record/recent/song", {
+    method: "GET",
+  });
+};
+
+/**
+ * @description 获取用户歌单
+ */
+export const getUserLibrary = (uid: number): HTTPResponse<LibraryResponse> => {
+  return http("/user/playlist", {
+    method: "GET",
+    params: {
+      uid,
+    },
+  });
+};
+
+/**
+ * @description 根据音乐id获取音乐url
+ */
+export const getMusicUrlByMusicId = (id: number): HTTPResponse<MusicUrlResponse> => {
+  return http("/song/url", {
+    method: "GET",
+    params: {
+      id,
+    },
+  });
+};
+
+/**
+ * @description 获取歌词
+ */
+
+export const getLyricById = (id: number): HTTPResponse<LyricResponse> => {
+  return http("/lyric", {
+    method: "GET",
+    params: {
+      id,
+    },
+  });
+};
+
+/**
+ * @description 搜索建议
+ */
+export const getSearchSuggest = (keywords: string): HTTPResponse<SearchSuggestResponse> => {
+  return http("/search/suggest", {
+    method: "GET",
+    params: {
+      keywords,
+    },
+  });
+};
+
+/**
+ * @description 搜索
+ */
+export const getSearchResult = (
+  keywords: string,
+  type?: 1 | 10 | 100,
+  offset?: number
+): HTTPResponse<SeacrhResponse> => {
+  return http("/search", {
+    method: "GET",
+    params: {
+      keywords,
+      type,
+      offset,
+    },
+  });
+};
+
+/**
+ * @description 获取专辑详情
+ */
+export const getAlbumDetail = (id: number, limit?: number) => {
+  return http("/album", {
+    method: "GET",
+    params: {
+      id,
+      limit,
+    },
+  });
+};
+
+/**
+ * @description 获取歌手单曲
+ */
+export const getArtistSongs = (id: number, limit?: number) => {
+  return http("/artists", {
+    method: "GET",
+    params: {
+      id,
+      limit,
+    },
+  });
+};
+
+/**
+ * @description 获取歌手专辑
+ */
+export const getArtistAlbums = (id: number, offset?: number) => {
+  return http("/artist/album", {
+    method: "GET",
+    params: {
+      id,
+      offset,
+    },
+  });
+};
+
+/**
+ * @description 添加/删除歌单中的歌曲
+ */
+export const updateSongsInLibrary = (op: "add" | "del", pid: number, tracks: string) => {
+  return http("/playlist/tracks", {
+    method: "GET",
+    params: {
+      op,
+      pid,
+      tracks,
+    },
+  });
+};

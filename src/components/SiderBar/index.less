@@ -1,0 +1,68 @@
+.sider-bar-wrapper {
+  width: 240px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 64px;
+  background-color: #323337;
+  color: #646464;
+  .sider-bar-option {
+    width: 100%;
+    height: 28px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    gap: 12px;
+    cursor: pointer;
+    transition: all linear 150ms;
+    
+    &:hover {
+      filter: brightness(1.2);
+    }
+  }
+  .sider-bar-option-active {
+    // background-color: #2f2f2f;
+    color: #64bb47;
+  }
+
+  .sider-bar-recently {
+    height: 566px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    label {
+      font-size: 16px;
+    }
+    .recently-list {
+      flex: 1;
+      overflow-x: hidden;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      .recently-list-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+        &:hover {
+          filter: brightness(1.2);
+        }
+        .recently-list-item-name {
+          font-size: 14px;
+        }
+        .recently-list-item-arname {
+          font-size: 12px;
+        }
+      }
+      .recently-list-item-active {
+        color: #64bb47;
+      }
+    }
+  }
+}

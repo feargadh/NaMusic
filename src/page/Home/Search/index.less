@@ -1,0 +1,36 @@
+.search-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 24px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .search-input {
+    width: calc(100% - 48px);
+  }
+  .search-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0 24px;
+  }
+}
+
+.suggest-category-title {
+  color: #017aff;
+}
+
+.suggest-item {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  .suggest-item-name{
+    color: #64bb47;
+  }
+  .suggest-item-artist {
+    color: #f850a0;
+  }
+}

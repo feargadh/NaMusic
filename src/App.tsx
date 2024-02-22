@@ -5,6 +5,8 @@ import HomePage from "./page/Home/index";
 import React, { useEffect } from "react";
 import WindowHeader from "./components/WindowHeader";
 import { ConfigProvider, message, theme } from "antd";
+import { BaseDirectory, createDir, exists, readBinaryFile, writeBinaryFile } from "@tauri-apps/api/fs";
+import { resourceDir } from "@tauri-apps/api/path";
 
 const App: React.FC = () => {
   const [_, contextHolder] = message.useMessage();
@@ -17,7 +19,33 @@ const App: React.FC = () => {
     } else {
       navigate("/login");
     }
+    // console.log(BaseDirectory.AppLocalData);
+    handleCheckDataFiles();
   }, []);
+
+  const handleCheckDataFiles = async () => {
+    // const resourcePath = await resourceDir();
+
+    // const readFile = await readBinaryFile("data\\library.json", {dir: BaseDirectory.Resource}).then(res => {
+    //   console.log(res);
+
+    // })
+    const localDataDirExist = await exists("data", { dir: BaseDirectory.Resource });
+    const localDataExist = await exists("data\\library.json", { dir: BaseDirectory.Resource });
+
+    if (!localDataDirExist) {
+      const createDirRes = await createDir("data", { dir: BaseDirectory.Resource });
+      console.log(createDirRes);
+    }
+    if (!localDataExist) {
+      const createLocalData = await writeBinaryFile("data\\library.json", new Uint8Array([]), {
+        dir: BaseDirectory.Resource,
+      });
+
+      console.log(createLocalData);
+      
+    }
+  };
 
   return (
     <ConfigProvider
@@ -38,9 +66,9 @@ const App: React.FC = () => {
             railBg: "#646464",
             railHoverBg: "#646464",
             trackBg: "#64bb47",
-            trackHoverBg: "#64bb47"
-          }
-        }
+            trackHoverBg: "#64bb47",
+          },
+        },
       }}
     >
       {contextHolder}

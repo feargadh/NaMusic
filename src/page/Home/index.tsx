@@ -7,11 +7,13 @@ import MusicPlayer from "../../components/MusicPlayer";
 import { Route, Routes } from "react-router-dom";
 import SearchPage from "./Search";
 import UserLibraryModal from "../../components/UserLibraryModal";
+import AlbumDetail from "../../components/AlbumDetail";
+import ArtistDetail from "../../components/ArtistDetail";
 
 const HomePage: React.FC = ({}) => {
   const [profile, setPropfile] = useState<Profile | undefined>(undefined);
   const [account, setAccount] = useState<Account | undefined>(undefined);
-  const { setGlobalState } = useGlobalStore();
+  const { setGlobalState, currentAlbumId, currentArtistId } = useGlobalStore();
 
   useEffect(() => {
     handleGetUserInfo();
@@ -41,6 +43,8 @@ const HomePage: React.FC = ({}) => {
             <Routes>
               <Route path="/search" element={<SearchPage />} />
             </Routes>
+            <AlbumDetail />
+            <ArtistDetail />
           </div>
           <UserLibraryModal />
         </>

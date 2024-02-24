@@ -480,6 +480,7 @@ declare interface SearchResult {
 interface SearchAlbum {
   name: string;
   id: number;
+  idStr: string;
   type: string;
   size: number;
   picId: number;
@@ -492,19 +493,16 @@ interface SearchAlbum {
   tags: string;
   company: string;
   briefDesc: string;
-  artist: SearchAlbumArtist;
-  songs?: any;
+  artist: Artist;
+  songs: any[];
   alias: any[];
   status: number;
   copyrightId: number;
   commentThreadId: string;
-  artists: SearchAlbumArtist[];
-  paid: boolean;
+  artists: Artist2[];
   onSale: boolean;
   picId_str: string;
-  alg: string;
-  mark: number;
-  containedSong: string;
+  isSub: boolean;
 }
 
 interface SearchAlbumArtist {
@@ -520,10 +518,9 @@ interface SearchAlbumArtist {
   trans: string;
   musicSize: number;
   topicPerson: number;
-  img1v1Id_str?: string;
 }
 
-interface SearchArtist {
+interface Artist {
   name: string;
   id: number;
   picId: number;
@@ -536,10 +533,24 @@ interface SearchArtist {
   trans: string;
   musicSize: number;
   topicPerson: number;
-  picId_str?: string;
+  picId_str: string;
+  transNames: string[];
+}
+
+interface SearchArtist {
+  id: number;
+  name: string;
+  picUrl: string;
+  alias: any[];
+  albumSize: number;
+  picId: number;
+  fansGroup?: any;
+  img1v1Url: string;
+  img1v1: number;
   transNames?: string[];
-  img1v1Id_str?: string;
-  alia: any[];
+  mvSize: number;
+  followed: boolean;
+  trans?: string;
 }
 
 interface Artist {
@@ -605,4 +616,355 @@ declare interface CreateLibraryResponse {
   code: number;
   playlist: LibraryItem;
   id: number;
+}
+
+declare interface AlbumDetailResponse {
+  resourceState: boolean;
+  songs: ResourceDataTypeInfo[];
+  code: number;
+  album: AlbumDetail;
+}
+
+interface AlbumDetail {
+  songs: any[];
+  paid: boolean;
+  onSale: boolean;
+  mark: number;
+  awardTags?: any;
+  artists: Artist[];
+  copyrightId: number;
+  picId: number;
+  artist: AlbumDetailArtist;
+  publishTime: number;
+  company: string;
+  briefDesc: string;
+  picUrl: string;
+  commentThreadId: string;
+  blurPicUrl: string;
+  companyId: number;
+  pic: number;
+  status: number;
+  subType: string;
+  alias: any[];
+  description: string;
+  tags: string;
+  name: string;
+  id: number;
+  type: string;
+  size: number;
+  picId_str: string;
+  info: AlbumDetailInfo;
+}
+
+interface AlbumDetailInfo {
+  commentThread: AlbumDetailCommentThread;
+  latestLikedUsers?: any;
+  liked: boolean;
+  comments?: any;
+  resourceType: number;
+  resourceId: number;
+  commentCount: number;
+  likedCount: number;
+  shareCount: number;
+  threadId: string;
+}
+
+interface AlbumDetailCommentThread {
+  id: string;
+  resourceInfo: ResourceInfoResourceInfo;
+  resourceType: number;
+  commentCount: number;
+  likedCount: number;
+  shareCount: number;
+  hotCount: number;
+  latestLikedUsers?: any;
+  resourceId: number;
+  resourceOwnerId: number;
+  resourceTitle: string;
+}
+
+interface ResourceInfoResourceInfo {
+  id: number;
+  userId: number;
+  name: string;
+  imgUrl: string;
+  creator?: any;
+  encodedId?: any;
+  subTitle?: any;
+  webUrl?: any;
+}
+
+interface ResourceInfoArtist2 {
+  img1v1Id: number;
+  topicPerson: number;
+  picId: number;
+  briefDesc: string;
+  musicSize: number;
+  albumSize: number;
+  picUrl: string;
+  img1v1Url: string;
+  followed: boolean;
+  trans: string;
+  alias: any[];
+  name: string;
+  id: number;
+  picId_str: string;
+  transNames: string[];
+  img1v1Id_str: string;
+}
+
+interface AlbumDetailArtist {
+  img1v1Id: number;
+  topicPerson: number;
+  picId: number;
+  briefDesc: string;
+  musicSize: number;
+  albumSize: number;
+  picUrl: string;
+  img1v1Url: string;
+  followed: boolean;
+  trans: string;
+  alias: any[];
+  name: string;
+  id: number;
+  img1v1Id_str: string;
+}
+
+interface Privilege {
+  id: number;
+  fee: number;
+  payed: number;
+  st: number;
+  pl: number;
+  dl: number;
+  sp: number;
+  cp: number;
+  subp: number;
+  cs: boolean;
+  maxbr: number;
+  fl: number;
+  toast: boolean;
+  flag: number;
+  preSell: boolean;
+  playMaxbr: number;
+  downloadMaxbr: number;
+  maxBrLevel: string;
+  playMaxBrLevel: string;
+  downloadMaxBrLevel: string;
+  plLevel: string;
+  dlLevel: string;
+  flLevel: string;
+  rscl?: any;
+  freeTrialPrivilege: FreeTrialPrivilege;
+  rightSource: number;
+  chargeInfoList: ChargeInfoList[];
+}
+
+interface ChargeInfoList {
+  rate: number;
+  chargeUrl?: any;
+  chargeMessage?: any;
+  chargeType: number;
+}
+
+interface FreeTrialPrivilege {
+  resConsumable: boolean;
+  userConsumable: boolean;
+  listenType?: any;
+  cannotListenReason?: any;
+  playReason?: any;
+}
+
+interface Sq {
+  br: number;
+  fid: number;
+  size: number;
+  vd: number;
+  sr: number;
+}
+
+interface Al {
+  id: number;
+  name: string;
+  picUrl: string;
+  pic_str: string;
+  pic: number;
+}
+
+interface Ar {
+  id: number;
+  name: string;
+  tns: string[];
+}
+
+declare interface ArtistDetailResponse {
+  code: number;
+  message: string;
+  data: ArtistDetailData;
+}
+
+declare interface ArtistDetailData {
+  videoCount: number;
+  artist: ArtistDetailDataInfo;
+  blacklist: boolean;
+  preferShow: number;
+  showPriMsg: boolean;
+  secondaryExpertIdentiy: SecondaryExpertIdentiy[];
+}
+
+interface SecondaryExpertIdentiy {
+  expertIdentiyId: number;
+  expertIdentiyName: string;
+  expertIdentiyCount: number;
+}
+
+declare interface ArtistDetailDataInfo {
+  id: number;
+  cover: string;
+  avatar: string;
+  name: string;
+  transNames: string[];
+  alias: any[];
+  identities: any[];
+  identifyTag?: any;
+  briefDesc: string;
+  rank?: any;
+  albumSize: number;
+  musicSize: number;
+  mvSize: number;
+}
+
+declare interface ArtistSongsResponse {
+  artist: Artist;
+  hotSongs: HotSong[];
+  more: boolean;
+  code: number;
+}
+
+interface HotSong {
+  rtUrls: any[];
+  ar: Ar[];
+  al: Al;
+  st: number;
+  noCopyrightRcmd?: any;
+  songJumpInfo?: any;
+  djId: number;
+  no: number;
+  fee: number;
+  mv: number;
+  t: number;
+  v: number;
+  cd: string;
+  sq?: Sq;
+  hr?: Sq;
+  l: Sq;
+  rtUrl?: any;
+  ftype: number;
+  rurl?: any;
+  pst: number;
+  alia: any[];
+  pop: number;
+  rt?: string;
+  mst: number;
+  cp: number;
+  crbt?: any;
+  cf: string;
+  dt: number;
+  h?: Sq;
+  rtype: number;
+  a?: any;
+  m?: Sq;
+  name: string;
+  id: number;
+  privilege: Privilege;
+  eq?: string;
+}
+
+interface Privilege {
+  id: number;
+  fee: number;
+  payed: number;
+  st: number;
+  pl: number;
+  dl: number;
+  sp: number;
+  cp: number;
+  subp: number;
+  cs: boolean;
+  maxbr: number;
+  fl: number;
+  toast: boolean;
+  flag: number;
+  preSell: boolean;
+  playMaxbr: number;
+  downloadMaxbr: number;
+  maxBrLevel: string;
+  playMaxBrLevel: string;
+  downloadMaxBrLevel: string;
+  plLevel: string;
+  dlLevel: string;
+  flLevel: string;
+  rscl?: any;
+  freeTrialPrivilege: FreeTrialPrivilege;
+  rightSource: number;
+  chargeInfoList: ChargeInfoList[];
+}
+
+interface ChargeInfoList {
+  rate: number;
+  chargeUrl?: any;
+  chargeMessage?: any;
+  chargeType: number;
+}
+
+interface FreeTrialPrivilege {
+  resConsumable: boolean;
+  userConsumable: boolean;
+  listenType?: any;
+  cannotListenReason?: any;
+  playReason?: any;
+}
+
+interface Sq {
+  br: number;
+  fid: number;
+  size: number;
+  vd: number;
+  sr: number;
+}
+
+interface Al {
+  id: number;
+  name: string;
+  picUrl: string;
+  pic_str: string;
+  pic: number;
+  alia?: string[];
+}
+
+interface Ar {
+  id: number;
+  name: string;
+  tns?: string[];
+}
+
+interface Artist {
+  img1v1Id: number;
+  topicPerson: number;
+  picId: number;
+  briefDesc: string;
+  musicSize: number;
+  albumSize: number;
+  picUrl: string;
+  img1v1Url: string;
+  followed: boolean;
+  trans: string;
+  alias: any[];
+  name: string;
+  id: number;
+  publishTime: number;
+  picId_str: string;
+  transNames: string[];
+  img1v1Id_str: string;
+  mvSize: number;
 }

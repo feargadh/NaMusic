@@ -25,19 +25,19 @@ const SearchPage: React.FC = () => {
   useDeepCompareEffect(() => {
     if (data && data.data.code === 200) {
       const { result } = data.data;
-      if(result) {
+      if (result) {
         const { order } = result;
 
-      if (order && order.length > 0) {
-        const categories = order.map((title) => ({
-          title,
-          options: result[title]!,
-        }));
+        if (order && order.length > 0) {
+          const categories = order.map((title) => ({
+            title,
+            options: result[title]!,
+          }));
 
-        setOptions(categories);
-      } else {
-        setOptions([]);
-      }
+          setOptions(categories);
+        } else {
+          setOptions([]);
+        }
       }
     }
   }, [data]);
@@ -60,11 +60,11 @@ const SearchPage: React.FC = () => {
     }
   };
 
-  const handleSearch = (value?: string) => {
+  const handleSearch = (value?: string, offset?: number) => {
     const keywordsObj = value ? (JSON.parse(value) as SearchKeywordsObj) : keywords;
     if (keywordsObj) {
       const { type, values } = keywordsObj;
-      searchRequest(values.join(" "), type);
+      searchRequest(values.join(" "), type, offset);
     }
   };
 
@@ -77,12 +77,14 @@ const SearchPage: React.FC = () => {
         options={options.map((option) => SearchSuggestItem(option))}
         onChange={handleInput}
         onKeyDown={(event) => event.code === "Enter" && handleSearch()}
-        onSelect={handleSearch}
+        onSelect={(value) => handleSearch(value)}
         // notFoundContent={<Empty />}
         value={keywords?.values.join(" ")}
         // open={true}
       ></AutoComplete>
-      {searchResult ? <SearchContent result={searchResult} /> : null}
+      {searchResult ? (
+        <SearchContent result={searchResult} onPageChange={(page) => handleSearch(undefined, page)} />
+      ) : null}
     </div>
   );
 };

@@ -1,0 +1,65 @@
+.album-detail-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2f2f2f;
+  transition: all linear 150ms;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  max-height: 100vh;
+  overflow: hidden;
+  .album-detail {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+    .album-cover {
+      width: 100px;
+      height: 100px;
+      background-size: cover;
+      border-radius: 8px;
+    }
+    .album-info {
+      display: flex;
+      gap: 8px 110px;
+      flex-wrap: wrap;
+      flex: 1;
+      .album-info-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 40%;
+        label {
+          color: #646464;
+        }
+        .album-name {
+          color: #61c353;
+        }
+        .album-arname {
+          color: #f4bc4d;
+        }
+        .album-publish-time {
+          color: #646464;
+        }
+      }
+    }
+
+  }
+  .album-song-list {
+    flex: 1;
+    overflow: hidden;
+  }
+}
+
+.album-detail-page-show {
+  transform: translate(0%);
+}
+
+.album-detail-page-hidden {
+  transform: translate(100%);
+}

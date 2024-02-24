@@ -26,6 +26,34 @@
         justify-content: flex-end;
       }
     }
+
+    .search-artist-avatar {
+      width: 56px;
+      height: 56px;
+      background-size: cover;
+      border-radius: 4px;
+    }
+
+    .search-result-column-1,
+    .search-result-column-2,
+    .search-result-column-3 {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      &:hover {
+        filter: brightness(1.2);
+      }
+    }
+    .search-result-column-1 {
+      color: #61c353;
+    }
+    .search-result-column-2 {
+      color: #eb695c;
+    }
+    .search-result-column-3 {
+      color: #f4bc4d;
+    }
   }
 }
 
@@ -37,7 +65,7 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  .suggest-item-name{
+  .suggest-item-name {
     color: #64bb47;
   }
   .suggest-item-artist {

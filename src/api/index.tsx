@@ -3,7 +3,6 @@ import http from "../http";
 
 // type TauriHTTPResponse<T = any> = Promise<Response<ApiResponseBaseType<T>>>;
 
-
 /**
  * @description 获取二维码key值
  */
@@ -67,7 +66,7 @@ export const getUserLibrary = (uid: number, offset?: number): HTTPResponse<Libra
     method: "GET",
     params: {
       uid,
-      offset
+      offset,
     },
   });
 };
@@ -130,7 +129,7 @@ export const getSearchResult = (
 /**
  * @description 获取专辑详情
  */
-export const getAlbumDetail = (id: number, limit?: number) => {
+export const getAlbumDetail = (id: number, limit?: number): HTTPResponse<AlbumDetailResponse> => {
   return http("/album", {
     method: "GET",
     params: {
@@ -143,12 +142,12 @@ export const getAlbumDetail = (id: number, limit?: number) => {
 /**
  * @description 获取歌手单曲
  */
-export const getArtistSongs = (id: number, limit?: number) => {
+export const getArtistSongs = (id: number, offset?: number) => {
   return http("/artists", {
     method: "GET",
     params: {
       id,
-      limit,
+      offset,
     },
   });
 };
@@ -162,6 +161,18 @@ export const getArtistAlbums = (id: number, offset?: number) => {
     params: {
       id,
       offset,
+    },
+  });
+};
+
+/**
+ * @description 获取歌手详情
+ */
+export const getArtistDetail = (id: number): HTTPResponse<ArtistDetailResponse> => {
+  return http("/artist/detail", {
+    method: "GET",
+    params: {
+      id,
     },
   });
 };
@@ -188,7 +199,7 @@ export const createPrivateLibrary = (name: string): HTTPResponse<CreateLibraryRe
     method: "GET",
     params: {
       name,
-      privacy: 10
-    }
-  })
-}
+      privacy: 10,
+    },
+  });
+};
